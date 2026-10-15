@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sistema de Gestión - Facturas</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+    <div class="contenedor">
+
+        <!-- ENCABEZADO -->
+
+        <header class="encabezado">
+
+            Mis Factuaras
+
+        </header>
+
+
+        <!-- CUERPO DEL PROGRAMA -->
+
+        <div class="cuerpo">
+
+            <!-- MENÚ LATERAL -->
+
+            <aside class="menu-lateral">
+                <label for="desplegable-menu">Navegación</label>
+
+                <select id="desplegable-menu" class="menu-desplegable"
+                    onchange="if (this.value) window.location.href=this.value;">
+                    <option value="" disabled selected>Selecciona una opción...</option>
+
+                    <!-- Bucle en Jinja2 que recorre la lista enviada desde app.py -->
+                    {% for opcion in lista_menu %}
+                    <option value="{{ opcion.url }}">{{ opcion.nombre }}</option>
+                    {% endfor %}
+                </select>
+            </aside>
+
+
+            <!-- INFORMACIÓN PRINCIPAL -->
+
+            <main class="informacion-principal">
+
+                INFORMACION PRINCIPAL
+
+            </main>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

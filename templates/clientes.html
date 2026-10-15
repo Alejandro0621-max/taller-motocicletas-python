@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+
+{% block title %}Clientes - Sistema de Gestión{% endblock %}
+
+{% block header %}Directorio de Clientes{% endblock %}
+
+{% block content %}
+<div class="hub-container">
+    
+    <!-- RECUADRO PRINCIPAL CENTRAL -->
+    <div class="tarjeta-hub">
+        
+        <!-- ENCABEZADO Y VISUAL DEL MÓDULO -->
+        <div class="hub-header">
+            <div class="hub-icono">👤​</div>
+            <h2>Gestión de Clientes</h2>
+            <p>Selecciona la operación que deseas realizar en el sistema</p>
+        </div>
+
+        <!-- TARJETAS DE ACCIÓN PRINCIPALES (BOTONES) -->
+        <div class="hub-grid-acciones">
+            
+            <a href="#" class="tarjeta-opcion opcion-crear">
+                <div class="opcion-icono">➕</div>
+                <div class="opcion-info">
+                    <h3>Registrar Nuevo Cliente</h3>
+                    <p>Ingresa una nuevo cliente al sistema vinculándola a un cliente.</p>
+                </div>
+                <span class="flecha-accion">➔</span>
+            </a>
+
+            <a href="#" class="tarjeta-opcion opcion-consultar">
+                <div class="opcion-icono">🔍</div>
+                <div class="opcion-info">
+                    <h3>Consultar / Buscar Cliente</h3>
+                    <p>Busca por documento o nombre para ver su historial y servicios.</p>
+                </div>
+                <span class="flecha-accion">➔</span>
+            </a>
+
+        </div>
+
+        <!-- PIE INFORMATIVO PARA QUE NO SE VEA VACÍO -->
+        <div class="hub-footer">
+            <div class="info-item">
+                <span class="info-label">Total en Sistema:</span>
+                <strong>124 Clientes</strong>
+            </div>
+            <div class="info-separador">•</div>
+            
+            </div>
+        </div>
+
+    </div>
+
+</div>
+{% endblock %}

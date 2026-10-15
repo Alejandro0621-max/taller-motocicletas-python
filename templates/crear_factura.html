@@ -1,0 +1,211 @@
+{% extends 'base.html' %}
+
+{% block title %}Nueva Factura{% endblock %}
+{% block header %}Nueva Factura{% endblock %}
+
+{% block content %}
+<div class="factura-page">
+
+    <form action="#" method="POST" class="factura-documento" id="formFactura">
+
+        <!-- ENCABEZADO -->
+        <header class="factura-cabecera">
+            <div class="empresa-info">
+                <h2>SU TALLER DE MOTOS</h2>
+                <p>Servicio técnico y venta de repuestos</p>
+                <p>Dirección del taller</p>
+                <p>Teléfono de contacto</p>
+            </div>
+
+            <div class="factura-identificacion">
+                <h1>FACTURA</h1>
+
+                <div class="numero-factura">
+                    <span>Número de factura</span>
+                    <strong>Se asignará al confirmar</strong>
+                </div>
+
+                <div class="campo-fecha">
+                    <label for="fecha_factura">Fecha</label>
+                    <input type="date" id="fecha_factura" name="fecha_factura" required>
+                </div>
+            </div>
+        </header>
+
+        <!-- INFORMACIÓN GENERAL -->
+        <section class="factura-datos">
+
+            <div class="datos-cliente">
+                <h3>Datos del cliente</h3>
+
+                <label for="id_cliente">Cliente</label>
+                <select id="id_cliente" name="id_cliente" required>
+                    <option value="">Seleccionar cliente...</option>
+                    {% for cliente in clientes %}
+                    <option value="{{ cliente.id_cliente }}">
+                        {{ cliente.nombre }}
+                    </option>
+                    {% endfor %}
+                </select>
+
+                <label for="documento_cliente">Documento</label>
+                <input type="text" id="documento_cliente" placeholder="Se completa al seleccionar" readonly>
+
+                <label for="id_moto">Motocicleta</label>
+                <select id="id_moto" name="id_moto">
+                    <option value="">Seleccionar motocicleta...</option>
+                    {% for moto in motos %}
+                    <option value="{{ moto.id_moto }}" data-cliente="{{ moto.id_cliente }}">
+                        {{ moto.placa }} - {{ moto.marca }}
+                        {{ moto.modelo }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="datos-documento">
+                <h3>Información de facturación</h3>
+
+                <label for="id_ordenservicio">Orden de servicio</label>
+                <select id="id_ordenservicio" name="id_ordenservicio">
+                    <option value="">Venta directa / Sin orden</option>
+                    {% for orden in ordenes %}
+                    <option value="{{ orden.id_ordenservicio }}" data-cliente="{{ orden.id_cliente }}"
+                        data-moto="{{ orden.id_moto }}">
+                        {{ orden.numero_orden }}
+                    </option>
+                    {% endfor %}
+                </select>
+
+                <p class="ayuda-campo">
+                    Selecciona una orden para consultar sus servicios.
+                </p>
+
+                <label>Vendedor</label>
+                <input type="text" value="Usuario en sesión" readonly>
+
+                <label>Estado</label>
+                <div class="estado-prefactura">
+                    Prefactura
+                </div>
+            </div>
+
+        </section>
+
+
+        <!-- Catálogo de repuestos: temporal para pruebas -->
+        <select id="catalogoRepuestos" hidden>
+            <option value="">Seleccionar repuesto...</option>
+
+            <option value="1" data-codigo="REP-001" data-nombre="Filtro de aceite" data-valor="18000" data-stock="10">
+                REP-001 - Filtro de aceite
+            </option>
+
+            <option value="2" data-codigo="REP-002" data-nombre="Pastillas de freno" data-valor="35000" data-stock="5">
+                REP-002 - Pastillas de freno
+            </option>
+
+            {% for repuesto in repuestos %}
+            <option value="{{ repuesto.id_repuesto }}" data-codigo="{{ repuesto.codigo }}"
+                data-nombre="{{ repuesto.nombre }}" data-valor="{{ repuesto.valor }}" data-stock="{{ repuesto.stock }}">
+                {{ repuesto.codigo }} - {{ repuesto.nombre }}
+            </option>
+            {% endfor %}
+        </select>
+
+
+        <!-- DETALLE -->
+        <section class="factura-detalle">
+            <div class="detalle-titulo">
+                <h3>Detalle de la factura</h3>
+                <button type="button" class="btn-factura btn-agregar" id="agregarRepuesto">
+                    + Agregar repuesto
+                </button>
+            </div>
+
+            <div class="tabla-factura-scroll">
+                <table class="tabla-factura">
+                    <thead>
+                        <tr>
+                            <th class="col-linea">Línea</th>
+                            <th>Tipo</th>
+                            <th>Código</th>
+                            <th>Descripción</th>
+                            <th class="col-cantidad">Cant.</th>
+                            <th class="col-valor">V. unitario</th>
+                            <th class="col-total">Subtotal</th>
+                            <th class="col-eliminar"> </th>
+                        </tr>
+                    </thead>
+                    <tbody id="detalleFactura">
+                        <!-- Las filas se agregan con JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+
+            <p id="mensajeDetalle" class="mensaje-detalle">
+                Selecciona una orden para cargar sus servicios
+                o agrega los repuestos que deseas vender.
+            </p>
+        </section>
+
+        <!-- PIE DE FACTURA -->
+        <footer class="factura-pie">
+
+            <div class="observaciones">
+                <label for="observaciones">Observaciones</label>
+                <textarea id="observaciones" name="observaciones" rows="4"
+                    placeholder="Información adicional..."></textarea>
+
+                <p>
+                    Los valores corresponden a los conceptos incluidos
+                    en esta prefactura.
+                </p>
+            </div>
+
+            <div class="resumen-factura">
+                <div class="resumen-fila">
+                    <span>Subtotal</span>
+                    <strong id="subtotalFactura">$ 0,00</strong>
+                </div>
+
+                <div class="resumen-fila">
+                    <span>Descuento</span>
+                    <strong>$ 0,00</strong>
+                </div>
+
+                <div class="resumen-total">
+                    <span>TOTAL</span>
+                    <strong id="totalFactura">$ 0,00</strong>
+                </div>
+
+                <div class="campo-pago">
+                    <label for="pago">Estado del pago</label>
+                    <select id="pago" name="pago">
+                        <option value="Pendiente">Pendiente</option>
+                        <option value="Pagada">Pagada</option>
+                    </select>
+                </div>
+            </div>
+        </footer>
+
+        <!-- ACCIONES -->
+        <div class="factura-acciones">
+            <a href="{{ url_for('ver_pagina', pagina='factura') }}" class="btn-factura btn-cancelar">
+                Cancelar
+            </a>
+
+            <button type="button" class="btn-factura btn-imprimir" onclick="window.print()">
+                Imprimir
+            </button>
+
+            <button type="submit" class="btn-factura btn-guardar">
+                Guardar prefactura
+            </button>
+        </div>
+
+    </form>
+</div>
+
+<script src="{{ url_for('static', filename='factura.js') }}"></script>
+{% endblock %}

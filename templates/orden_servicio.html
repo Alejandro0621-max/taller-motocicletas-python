@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+
+{% block title %}Orden de Servicio - Sistema de Gestión{% endblock %}
+
+{% block header %}Órdenes de Servicio{% endblock %}
+
+{% block content %}
+    <h2>Registro de Ordenes de Servicio</h2>
+    <div class="modulo-container">
+
+    <!-- BARRA SUPERIOR DE ACCIONES -->
+    <div class="acciones-bar">
+        <button class="btn btn-primary">+ Nueva Orden</button>
+        <div class="buscador">
+            <input type="text" placeholder="Buscar por Placa o Mecanico...">
+        </div>
+    </div>
+
+    <!-- TARJETA CON LA TABLA DE FACTURAS -->
+    <div class=" tarjeta-tabla">
+            <div class="tarjeta-encabezado">
+                <h3>Listado de Facturas Registradas</h3>
+            </div>
+
+            <div class="tabla-responsive">
+                <table class="tabla-custom">
+                    <thead>
+                        <tr>
+                            <th>N° Orden</th>
+                            <th>Fecha Ingreso</th>
+                            <th>Fecha Salida</th>
+                            <th>Mecanico</th>
+                            <th>Moto</th>
+                            <th>Estado</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ORD-001</strong></td>
+                            <td>05/10/2026</td>
+                            <td>05/10/2026</td>
+                            <td>Carlos Mendoza</td>
+                            <td>UQD09D</td>
+                            <td><span class="badge badge-pagado">Ingresado</span></td>
+                            <td>
+                                <button class="btn-accion" title="Ver detalles">👁️</button>
+                                <button class="btn-accion" title="Imprimir">🖨️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>ORD-002</strong></td>
+                            <td>04/10/2026</td>
+                            <td>04/10/2026</td>
+                            <td>María Fernanda López</td>
+                            <td>HTM03L</td>
+                            <td><span class="badge badge-pendiente">En Reparacion</span></td>
+                            <td>
+                                <button class="btn-accion" title="Ver detalles">👁️</button>
+                                <button class="btn-accion" title="Imprimir">🖨️</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><strong>ORD-003</strong></td>
+                            <td>02/10/2026</td>
+                            <td>02/10/2026</td>
+                            <td>Carlos Mendoza</td>
+                            <td>PYT00N</td>
+                            <td><span class="badge badge-anulado">Entregada</span></td>
+                            <td>
+                                <button class="btn-accion" title="Ver detalles">👁️</button>
+                                <button class="btn-accion" title="Imprimir">🖨️</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+    {% endblock %}

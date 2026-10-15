@@ -1,5 +1,16 @@
+```gitignore
+# Archivos temporales de Python
 __pycache__/
 *.pyc
+
+# Entorno virtual
+env/
+venv/
+.venv/
+
+# Archivos y datos locales
 anexos/
 datos/
 *.pdf
+.env
+```

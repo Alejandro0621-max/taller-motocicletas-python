@@ -1,0 +1,77 @@
+{% extends 'base.html' %}
+
+{% block title %}Facturación - Sistema de Gestión{% endblock %}
+
+{% block header %}Gestión de Facturas{% endblock %}
+
+{% block content %}
+<h2>Registro de Facturas</h2>
+<div class="modulo-container">
+
+    <!-- BARRA SUPERIOR DE ACCIONES -->
+    <div class="acciones-bar">
+        <a href="{{ url_for('crear_factura') }}" class="btn btn-primary">+ Nueva Factura</a>
+        <div class="buscador">
+            <input type="text" placeholder="Buscar por cliente o N° de factura...">
+        </div>
+    </div>
+
+    <!-- TARJETA CON LA TABLA DE FACTURAS -->
+    <div class="tarjeta-tabla">
+        <div class="tarjeta-encabezado">
+            <h3>Listado de Facturas Registradas</h3>
+        </div>
+
+        <div class="tabla-responsive">
+            <table class="tabla-custom">
+                <thead>
+                    <tr>
+                        <th>N° Factura</th>
+                        <th>Fecha</th>
+                        <th>Cliente</th>
+                        <th>Total</th>
+                        <th>Estado</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>FAC-001</strong></td>
+                        <td>05/10/2026</td>
+                        <td>Carlos Mendoza</td>
+                        <td>$ 350.000</td>
+                        <td><span class="badge badge-pagado">Pagado</span></td>
+                        <td>
+                            <button class="btn-accion" title="Ver detalles">👁️</button>
+                            <button class="btn-accion" title="Imprimir">🖨️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>FAC-002</strong></td>
+                        <td>04/10/2026</td>
+                        <td>María Fernanda López</td>
+                        <td>$ 180.000</td>
+                        <td><span class="badge badge-pendiente">Pendiente</span></td>
+                        <td>
+                            <button class="btn-accion" title="Ver detalles">👁️</button>
+                            <button class="btn-accion" title="Imprimir">🖨️</button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><strong>FAC-003</strong></td>
+                        <td>02/10/2026</td>
+                        <td>Taller Motos Pro S.A.S.</td>
+                        <td>$ 1.250.000</td>
+                        <td><span class="badge badge-anulado">Anulado</span></td>
+                        <td>
+                            <button class="btn-accion" title="Ver detalles">👁️</button>
+                            <button class="btn-accion" title="Imprimir">🖨️</button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

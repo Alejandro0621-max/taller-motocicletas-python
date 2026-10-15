@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block title %}Motos - Sistema de Gestión{% endblock %}
+
+{% block header %}Módulo de Motos{% endblock %}
+
+{% block content %}
+<div class="hub-container">
+
+    <div class="tarjeta-hub">
+
+        <div class="hub-header">
+            <div class="hub-icono">🏍️</div>
+            <h2>Gestión de Motocicletas</h2>
+            <p>Selecciona la operación que deseas realizar en el sistema</p>
+        </div>
+
+        <div class="hub-grid-acciones">
+            <!-- Botón que activa el modal -->
+            <button type="button" class="tarjeta-opcion opcion-crear" onclick="abrirModal()">
+                <div class="opcion-icono">➕</div>
+                <div class="opcion-info">
+                    <h3>Registrar Nueva Moto</h3>
+                    <p>Ingresa una nueva motocicleta al sistema vinculándola a un cliente.</p>
+                </div>
+                <span class="flecha-accion">➔</span>
+            </button>
+
+            <a href="#" class="tarjeta-opcion opcion-consultar">
+                <div class="opcion-icono">🔍</div>
+                <div class="opcion-info">
+                    <h3>Consultar / Buscar Moto</h3>
+                    <p>Busca por placa, propietario o marca para ver su historial y servicios.</p>
+                </div>
+                <span class="flecha-accion">➔</span>
+            </a>
+        </div>
+
+        <div class="hub-footer">
+            <div class="info-item">
+                <span class="info-label">Total en Sistema:</span>
+                <strong>124 Motos</strong>
+            </div>
+            <div class="info-separador">•</div>
+            <div class="info-item">
+                <span class="info-label">Último Registro:</span>
+                <strong>Hace 2 horas (Placa XYZ-123)</strong>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ==========================================
+     MODAL DE REGISTRO
+   ========================================== -->
+<div id="modalRegistroMoto" class="modal-overlay">
+    <div class="modal-contenido">
+
+        <div class="modal-header">
+            <h3>🏍️ Registrar Nueva Moto</h3>
+            <button class="btn-cerrar" onclick="cerrarModal()">&times;</button>
+        </div>
+
+        <form action="/motos" method="POST" class="modal-body">
+
+            <div class="form-grupo">
+                <label for="placa">Placa:</label>
+                <input type="text" id="placa" name="placa" placeholder="Ej: ABC12D" required uppercase>
+            </div>
+
+            <div class="form-row">
+                <div class="form-grupo">
+                    <label for="marca">Marca:</label>
+                    <input type="text" id="marca" name="marca" placeholder="Ej: Yamaha" required>
+                </div>
+                <div class="form-grupo">
+                    <label for="modelo">Modelo / Año:</label>
+                    <input type="number" id="modelo" name="modelo" placeholder="Ej: 2024" required>
+                </div>
+            </div>
+
+            <div class="form-grupo">
+                <label for="cilindraje">Cilindraje (cc):</label>
+                <input type="number" id="cilindraje" name="cilindraje" placeholder="Ej: 150">
+            </div>
+
+            <div class="form-grupo">
+                <label for="cliente">Propietario / Cliente:</label>
+                <select id="cliente" name="cliente_id" required>
+                    <option value="" disabled selected>Seleccione un cliente...</option>
+                    <option value="1">Carlos Mendoza (1098234...)</option>
+                    <option value="2">María López (1012398...)</option>
+                </select>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+                <button type="submit" class="btn btn-guardar">Guardar Moto</button>
+            </div>
+
+        </form>
+
+    </div>
+</div>
+
+<!-- JAVASCRIPT BÁSICO PARA ABRIR Y CERRAR -->
+<script>
+    function abrirModal() {
+        document.getElementById("modalRegistroMoto").classList.add("activo");
+    }
+
+    function cerrarModal() {
+        document.getElementById("modalRegistroMoto").classList.remove("activo");
+    }
+
+    // Cerrar el modal al hacer clic en el fondo oscuro
+    window.onclick = function (event) {
+        var modal = document.getElementById("modalRegistroMoto");
+        if (event.target == modal) {
+            cerrarModal();
+        }
+    }
+</script>
+{% endblock %}

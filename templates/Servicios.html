@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+
+{% block title %}Servicios - Sistema de Gestión{% endblock %}
+
+{% block header %}Gestion de Serviciosl{% endblock %}
+
+{% block content %}
+<h2>Consulta de Servicios</h2>
+<div class="modulo-container">
+
+    <!-- BARRA SUPERIOR DE ACCIONES -->
+    <div class="acciones-bar">
+        <button class="btn btn-primary">+ Agregar Servicio</button>
+        <div class="buscador">
+            <input type="text" placeholder="Buscar por Codigo">
+        </div>
+    </div>
+
+    <!-- TARJETA CON LA TABLA DE FACTURAS -->
+    <div class=" tarjeta-tabla">
+        <div class="tarjeta-encabezado">
+            <h3>Listado de Servicios</h3>
+        </div>
+
+        <div class="tabla-responsive">
+            <table class="tabla-custom">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Nombre</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>A001</strong></td>
+                        <td>Cambio de Llanta</td>
+                        <td>5000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A002</strong></td>
+                        <td>Cambio de Aceite</td>
+                        <td>3000</td>
+                    <tr>
+                        <td><strong>A003</strong></td>
+                        <td>Cambio de Kit Arrastre</td>
+                        <td>10000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

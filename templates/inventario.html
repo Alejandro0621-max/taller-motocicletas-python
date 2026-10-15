@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Inventario - Sistema de Gestión{% endblock %}
+
+{% block header %}Gestión de Inventario{% endblock %}
+
+{% block content %}
+<h2>Registro de Inventario</h2>
+<div class="modulo-container">
+
+    <!-- BARRA SUPERIOR DE ACCIONES -->
+    <div class="acciones-bar">
+        <button class="btn btn-primary">+ Agregar Producto</button>
+        <div class="buscador">
+            <input type="text" placeholder="Buscar por Codigo">
+        </div>
+    </div>
+
+    <!-- TARJETA CON LA TABLA DE FACTURAS -->
+    <div class=" tarjeta-tabla">
+        <div class="tarjeta-encabezado">
+            <h3>Listado de Inventario</h3>
+        </div>
+
+        <div class="tabla-responsive">
+            <table class="tabla-custom">
+                <thead>
+                    <tr>
+                        <th>Codigo</th>
+                        <th>Repuesto</th>
+                        <th>Stock</th>
+                        <th>Minimo</th>
+                        <th>Valor</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>A001</strong></td>
+                        <td>Filtro Aire</td>
+                        <td>10</td>
+                        <td>5</td>
+                        <td>15000</td>
+                    </tr>
+                    <tr>
+                        <td><strong>A002</strong></td>
+                        <td>Filtro Aceite</td>
+                        <td>25</td>
+                        <td>5</td>
+                        <td>20000</td>
+                    <tr>
+                        <td><strong>A003</strong></td>
+                        <td>Kit Arrastre</td>
+                        <td>4</td>
+                        <td>2</td>
+                        <td>150000</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{% endblock %}
